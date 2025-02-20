@@ -1,9 +1,7 @@
 import express, {Request, Response} from "express"
-    import {UnitUser, User} from "./user.interface"
-    import { StatusCodes } from "http-status-codes"
-    import * as database from "./user.database"
-    import { searchUsers } from "./user.database";
-    import { parseJsonSourceFileConfigFileContent } from "typescript"
+import {UnitUser, User} from "./user.interface"
+import { StatusCodes } from "http-status-codes"
+import * as database from "./user.database"
 
     export const userRouter = express.Router()
 
@@ -23,20 +21,6 @@ import express, {Request, Response} from "express"
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({error})
         }
     })
-
-    userRouter.get("/users/search", async (req: Request, res: Response) => {
-        try {
-    
-            const name = req.query.name as string;
-            const email = req.query.email as string;
-    
-            const users = await searchUsers(name, email);
-    
-            return res.status(StatusCodes.OK).json({ users });
-        } catch (error) {
-            return res.status(StatusCodes.NOT_FOUND).json( ["User not found"] );
-        }
-    });
 
     userRouter.get("/user/:id", async (req : Request, res : Response) => {
 
@@ -152,3 +136,4 @@ import express, {Request, Response} from "express"
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({error})
         }
     })
+

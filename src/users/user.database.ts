@@ -5,15 +5,16 @@ import fs from "fs"
 
 let users: Users = loadUsers()
 
-function loadUsers () : Users {
+function loadUsers(): Users {
     try {
         const data = fs.readFileSync("./users.json", "utf-8")
-        return JSON.parse(data)
+        return JSON.parse(data); 
     } catch (error) {
-        console.log(`Error ${error}`)
-        return {}
+        console.log(`Error: ${error}`);
+        return {}; 
     }
 }
+
 
 function saveUsers () {
     try {
